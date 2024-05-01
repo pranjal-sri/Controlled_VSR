@@ -58,6 +58,15 @@ To download Vimeo90k dataset,
 python download_data.py
 ```
 change the directory in the download_data.py file to save to a preferred location, defaults to './data'.
+#### config.yaml
+
+Set the following in the config.yaml accordingly:
+- MODEL: SRNET_WITH_FLOW/SRNET
+- TRAINED_SRSNET_PATH: path to SRGAN weights
+- TRAIN_DATA_FILE: a .txt file with list of sequences for training
+- TEST_DATA_FILE: a .txt file with list of sequences for testing
+
+other parametrs are self-explanatory and can be modified as per the need
 
 To run training for the Model:
 

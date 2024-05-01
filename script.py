@@ -168,9 +168,3 @@ if __name__ == '__main__':
           epochs = config['TRAIN']['HYP']['EPOCHS'],
           val_frac=config['TRAIN']['HYP']['VAL_FRAC'])
     
-    loss, psnr, ssim = evaluate(model, criterion, test_loader, device = device)
-
-    print()
-    print('-------- Test Performance --------')
-    print(f'Loss = {loss}, PSNR = {psnr}, SSIM = {ssim}')
-    
