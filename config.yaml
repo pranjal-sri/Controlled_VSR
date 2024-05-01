@@ -1,0 +1,44 @@
+ROOT_DIRECTORY: data/vimeo_septuplet/sequences
+MODEL: SRNET_WITH_FLOW
+# MODEL: SRNET
+MODEL_CHECKPOINT_PATH: model_checkpoints
+TRAINED_SRSNET_PATH: results/pretrained_models/SRGAN_x4-SRGAN_ImageNet.pth.tar
+SEED: 42
+TEST:
+  HYP:
+    EPOCHS: 5
+    NUM_WORKERS: 2
+    PERSISTENT_WORKERS: true
+    PIN_MEMORY: true
+    SEQS_PER_BATCH: 8
+    SHUFFLE: true
+TEST_DATA_FILE: truncated_test_list_by_4.txt
+TEST_DIR: data/vimeo_septuplet/sequences
+TRAIN:
+  RESUME_FROM_CHECKPOINT: model_checkpoints/20240426-092232.pth
+  HYP:
+    EPOCHS: 5
+    NUM_WORKERS: 4
+    PERSISTENT_WORKERS: true
+    PIN_MEMORY: true
+    SEQS_PER_BATCH: 4
+    SHUFFLE: true
+    CONTROL_GRAD: true
+    NET_GRAD: true
+    VAL_FRAC: 0.1
+  OPTIM:
+    TYPE: Adam
+    LR: 0.001
+    #NESTEROV: true
+    #MOMENTUM: 0.9
+  SCHEDULER:
+    USE: true
+    TYPE: OneCycleLR
+    MAX_LR: 0.0001
+  LOSS:
+    TYPE: Ch
+    # C_WEIGHT: 1.0
+    # F_WEIGHT: 0.01
+TRAIN_DATA_FILE: truncated_train_list_by_4.txt
+TRAIN_DIR: data/vimeo_septuplet/sequences
+VALIDATION_SPLIT: 0.1
